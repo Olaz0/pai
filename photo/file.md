@@ -3,6 +3,12 @@
 ## Wprowadzenie
 Aplikacja została stworzona w celu gromadzenia "lajków" na mecze, gdzie każdy użytkownik ma określoną liczbę głosów do wykorzystania. Poniżej przedstawiono analizę poszczególnych części aplikacji.
 
+## Setup
+
+Aby uruchomić aplikację, użyj Dockera i wykonaj poniższą komendę w terminalu:
+
+`docker-compose up --build`.
+
 ## Docker Compose
 Plik `docker-compose.yml` definiuje konfigurację Docker Compose do uruchomienia trzech głównych usług: backendu meczu, backendu użytkownika, i frontendu. Ponadto, używana jest baza danych MongoDB. Poniżej analiza poszczególnych usług:
 
