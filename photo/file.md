@@ -1,4 +1,5 @@
 # Проект "Node.js API + HTML Frontend + Docker"
+![Описание изображения](https://photutorial.com/wp-content/uploads/2023/04/Featured-image-AI-image-generators-by-Midjourney-680x340.png)
 
 ## Описание проекта
 
