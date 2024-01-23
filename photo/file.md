@@ -1,96 +1,50 @@
-# Проект "Node.js API + HTML Frontend + Docker"
-![Описание изображения](https://photutorial.com/wp-content/uploads/2023/04/Featured-image-AI-image-generators-by-Midjourney-680x340.png)
+# Analiza Aplikacji do Gromadzenia Lajków na Mecze
 
-## Описание проекта
+## Wprowadzenie
+Aplikacja została stworzona w celu gromadzenia "lajków" na mecze, gdzie każdy użytkownik ma określoną liczbę głosów do wykorzystania. Poniżej przedstawiono analizę poszczególnych części aplikacji.
 
-Проект представляет собой полноценное веб-приложение, включающее в себя Node.js API, HTML фронтэнд, и контейнеризацию с использованием Docker.
+## Docker Compose
+Plik `docker-compose.yml` definiuje konfigurację Docker Compose do uruchomienia trzech głównych usług: backendu meczu, backendu użytkownika, i frontendu. Ponadto, używana jest baza danych MongoDB. Poniżej analiza poszczególnych usług:
 
-## Структура проекта
+### 1. Backend Meczu (`backend-match`):
+- Zbudowany z kontekstu `./match_api`.
+- Działa na porcie 8080.
+- Zależność od usługi MongoDB.
 
-project-root
+### 2. Backend Użytkownika (`backend-user`):
+- Zbudowany z kontekstu `./user_api`.
+- Działa na porcie 8081.
+- Zależność od usługi MongoDB.
 
-│
+### 3. Frontend (`frontend`):
+- Zbudowany z kontekstu `./view`.
+- Działa na porcie 80.
 
-├── api
+### 4. MongoDB (`mongo`):
+- Używa oficjalnego obrazu MongoDB.
+- Działa na porcie 27017.
 
-│ ├── app.js
+## Backend Meczu (`backend-match`)
+- Działa na Express.js.
+- Korzysta z MongoDB do przechowywania danych dotyczących meczów.
+- Posiada endpointy CRUD (Create, Read, Update, Delete) dla meczów.
+- Posiada endpointy do oddawania głosów przez użytkowników na konkretne mecze.
 
-│ ├── routes
+## Backend Użytkownika (`backend-user`)
+- Działa na Express.js.
+- Korzysta z MongoDB do przechowywania danych użytkowników.
+- Udostępnia endpointy do rejestracji, logowania i uzyskiwania informacji o użytkowniku.
 
-│ │ ├── apiRoutes.js
+## Frontend (`frontend`)
+- Interfejs użytkownika zbudowany w HTML, CSS i JavaScript.
+- Strony obejmują rejestrację, logowanie, głosowanie na mecze, wyświetlanie listy meczów i ich edycję.
 
-│ │ └── ...
+## Bezpieczeństwo
+- Aplikacja używa protokołu HTTP, co może stanowić zagrożenie dla bezpieczeństwa przesyłanych danych.
+- Przesyłanie loginu i hasła w ciasteczkach (`document.cookie`) nie jest najlepszą praktyką bezpieczeństwa, ze względu na narażenie na ataki typu CSRF (Cross-Site Request Forgery) i XSS (Cross-Site Scripting).
 
-│ └── package.json
+## Zakończenie
+Powyższa analiza przedstawia strukturę i funkcjonalności każdej części aplikacji. Warto zauważyć, że aplikacja ma na celu demonstrację współpracy między dwoma API, co stanowi główny aspekt projektu. W rzeczywistym środowisku produkcyjnym, oprócz funkcji, należy uwzględnić dodatkowe środki bezpieczeństwa.
 
-│
-
-├── frontend
-
-│ ├── index.html
-
-│ ├── styles.css
-
-│ └── scripts.js
-
-│
-
-├── Dockerfile
-
-└── docker-compose.yml
-
-
-- **api**: Содержит код для Node.js API.
-- **frontend**: Содержит HTML файл, стили и скрипты для фронтэнда.
-- **Dockerfile**: Файл для создания Docker образа.
-- **docker-compose.yml**: Файл для настройки Docker Compose.
-
-## Зависимости
-
-- Node.js
-- npm
-- Docker
-
-## Установка и Запуск
-
-1. **API:**
-
-    ```bash
-    cd api
-    npm install
-    node app.js
-    ```
-
-    API будет доступен по адресу `http://localhost:3000`.
-
-2. **Frontend:**
-
-    Откройте `frontend/index.html` в вашем браузере.
-
-3. **Docker:**
-
-    ```bash
-    docker-compose up --build
-    ```
-
-    Приложение будет доступно по адресу `http://localhost:8080`.
-
-## API Routes
-
-- **GET /api/data**: Получить данные.
-- **POST /api/data**: Отправить данные.
-
-## Frontend
-
-Открыть `frontend/index.html` в браузере для взаимодействия с фронтэндом.
-
-## Docker
-
-Проект поддерживает контейнеризацию через Docker. Вы можете использовать `docker-compose` для легкой установки и запуска.
-
-## Заметки
-
-- Убедитесь, что все зависимости установлены перед запуском приложения.
-- Для разработки, вы можете использовать инструменты типа Nodemon для автоматического перезапуска сервера при изменениях в коде.
-- Для фронтэнда вы можете использовать сборщики типа Webpack для управления зависимостями и билда.
-
+**Uwaga:**
+Autorzy kodu wiedzą, że przesyłanie loginu i hasła w ciasteczkach nie jest zalecaną praktyką bezpieczeństwa. W rzeczywistych aplikacjach, należy stosować bardziej zaawansowane metody uwierzytelniania i autoryzacji, takie jak tokeny JWT (JSON Web Tokens), aby zminimalizować ryzyko ataków.
