@@ -1,5 +1,5 @@
 # Analiza Aplikacji do Gromadzenia Lajków na Mecze
-
+![Tekst alternatywny](https://github.com/Olaz0/pai/blob/main/photo/photo_2024-01-23_19-27-20.jpg?raw=true)
 ## Wprowadzenie
 Aplikacja została stworzona w celu gromadzenia "lajków" na mecze, gdzie każdy użytkownik ma określoną liczbę głosów do wykorzystania. Poniżej przedstawiono analizę poszczególnych części aplikacji.
 
